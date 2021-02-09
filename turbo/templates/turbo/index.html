@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/turbo/turbo.es5-umd.js"></script>
+    <title>TURBO test</title>
+</head>
+<body>
+
+<table style="width: 100%">
+    <tr>
+        <td style="border: 1px solid red;">
+            <div><a href="/turbo/one" data-turbo-frame="content">One</a></div>
+            <div><a href="/turbo/two" data-turbo-frame="content">Two</a></div>
+            <div><a href="/turbo/three" data-turbo-frame="content">Three</a></div>
+            <div><a href="/turbo/form" data-turbo-frame="content">Form</a></div>
+        </td>
+
+
+        <td style="border: 1px solid red;">
+            <turbo-frame id="content">content to go here...</turbo-frame>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

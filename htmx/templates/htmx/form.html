@@ -1,0 +1,14 @@
+<table style="width: 100%">
+    <tr>
+        <td style="border: 1px solid blue;">
+            <form id="formy" hx-get="/htmx/partial/result" hx-target="#form_content">
+                <select name="a" onchange="document.getElementById('formy').requestSubmit();">
+                    <option value="1">One one</option>
+                    <option value="2">One two</option>
+                    <option value="3">One three</option>
+                </select>
+            </form>
+        </td>
+        <td id="form_content" style="border: 1px solid blue;">content to go here...</td>
+    </tr>
+</table>

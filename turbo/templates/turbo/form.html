@@ -1,0 +1,18 @@
+<turbo-frame id="content">
+    <table style="width: 100%">
+        <tr>
+            <td style="border: 1px solid blue;">
+                <form id="formy" action="/turbo/result" data-turbo-frame="form_content">
+                    <select name="one" onchange="document.getElementById('formy').requestSubmit();">
+                        <option value="one">One one</option>
+                        <option value="two">One two</option>
+                        <option value="three">One three</option>
+                    </select>
+                </form>
+            </td>
+            <td style="border: 1px solid blue;">
+                <turbo-frame id="form_content">content to go here...</turbo-frame>
+            </td>
+        </tr>
+    </table>
+</turbo-frame>
