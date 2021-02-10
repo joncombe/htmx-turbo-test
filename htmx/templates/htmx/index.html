@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/static/htmx/htmx.js"></script>
+    <script src="/static/htmx/htmx.min.js"></script>
     <title>HTMX test</title>
 </head>
 <body>
@@ -12,10 +12,10 @@
 <table style="width: 100%">
     <tr>
         <td style="border: 1px solid red;">
-            <div><a hx-get="/htmx/partial/one" hx-target="#content" hx-push-url="/htmx/#one">One</a></div>
-            <div><a hx-get="/htmx/partial/two" hx-target="#content" hx-push-url="/htmx/#two">Two</a></div>
-            <div><a hx-get="/htmx/partial/three" hx-target="#content" hx-push-url="/htmx/#three">Three</a></div>
-            <div><a hx-get="/htmx/partial/form" hx-target="#content" hx-push-url="/htmx/#form">Form</a></div>
+            <div><a hx-get="/htmx/partial/one" hx-target="#content" hx-push-url="/htmx/one">One</a></div>
+            <div><a hx-get="/htmx/partial/two" hx-target="#content" hx-push-url="/htmx/two">Two</a></div>
+            <div><a hx-get="/htmx/partial/three" hx-target="#content" hx-push-url="/htmx/three">Three</a></div>
+            <div><a hx-get="/htmx/partial/form" hx-target="#content" hx-push-url="/htmx/form">Form</a></div>
         </td>
         <td id="content" style="border: 1px solid red;">content to go here...</td>
     </tr>
@@ -24,7 +24,18 @@
 <div id="his"></div>
 
 <script>
-    document.getElementById('his').innerHTML = '{{ request }}';
+
+    var fullPath = '{{ request.path_info }}';
+    if (fullPath.startsWith('/htmx/')) {
+        var contentPath = '/htmx/partial/one';
+        if (fullPath.length > 6) {
+            contentPath = '/htmx/partial/' + fullPath.split('?')[0].substr(6);
+            while (contentPath.endsWith('/')) {
+                contentPath = contentPath.slice(0, -1);
+            }
+        }
+        htmx.ajax('GET', contentPath, '#content');
+    }
 </script>
 
 </body>
